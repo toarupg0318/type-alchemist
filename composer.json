@@ -14,5 +14,7 @@
             "email": "toarupg0318@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.1"
+    }
 }
