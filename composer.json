@@ -5,8 +5,9 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Korutopi\\TypeArchemist\\": "src/"
-        }
+            "Toarupg0318\\TypeAlchemist\\": "src/package"
+        },
+        "files": ["src/package/functions.php"]
     },
     "authors": [
         {
