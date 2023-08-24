@@ -21,7 +21,8 @@
     "require-dev": {
         "phpstan/phpstan": "^1.10",
         "pestphp/pest": "^2.15",
-        "rector/rector": "^0.18.0"
+        "rector/rector": "^0.18.0",
+        "vimeo/psalm": "^5.15"
     },
     "config": {
         "allow-plugins": {
