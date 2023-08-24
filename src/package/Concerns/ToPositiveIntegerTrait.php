@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Toarupg0318\TypeAlchemist\Concerns;
 
-use Throwable;
 use TypeError;
 
 /**
@@ -27,19 +26,12 @@ trait ToPositiveIntegerTrait
     /**
      * @return positive-int
      *
-     * @throws Throwable|TypeError
+     * @throws TypeError
      */
-    public function __toStrictPositiveInt(string|null $exception = null): int
+    public function __toStrictPositiveInt(): int
     {
         $positiveIntScalarValue = self::__toSafePositiveInt();
         if (is_null($positiveIntScalarValue)) {
-            if (
-                !is_null($exception) &&
-                class_exists($exception) &&
-                (new $exception) instanceof Throwable
-            ) {
-                throw new $exception;
-            }
             throw new TypeError();
         } else {
             return $positiveIntScalarValue;

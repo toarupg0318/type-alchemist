@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Toarupg0318\TypeAlchemist\Concerns;
 
 use Stringable;
-use Throwable;
 use TypeError;
 
 /**
@@ -32,23 +31,13 @@ trait ToStringTrait
     }
 
     /**
-     * @param class-string<Throwable>|null $exception
      * @return string
      *
-     * @throws Throwable|TypeError
+     * @throws TypeError
      */
-    public function __ToStrictString(
-        string|null $exception = null
-    ): string {
+    public function __ToStrictString(): string {
         $scalarStringValue = self::__toSafeString();
         if (is_null($scalarStringValue)) {
-            if (
-                !is_null($exception) &&
-                class_exists($exception) &&
-                (new $exception) instanceof Throwable
-            ) {
-                throw new $exception;
-            }
             throw new TypeError();
         } else {
             return $scalarStringValue;
