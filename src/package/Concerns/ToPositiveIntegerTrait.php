@@ -14,7 +14,7 @@ trait ToPositiveIntegerTrait
     /**
      * @return positive-int|null
      */
-    public function __toSafePositiveInt(): int|null
+    public function toSafePositiveInt(): int|null
     {
         if (is_int($this->value) && $this->value > 0) {
             return $this->value;
@@ -28,9 +28,9 @@ trait ToPositiveIntegerTrait
      *
      * @throws TypeError
      */
-    public function __toStrictPositiveInt(): int
+    public function toStrictPositiveInt(): int
     {
-        $positiveIntScalarValue = self::__toSafePositiveInt();
+        $positiveIntScalarValue = self::toSafePositiveInt();
         if (is_null($positiveIntScalarValue)) {
             throw new TypeError();
         } else {

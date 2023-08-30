@@ -3,7 +3,7 @@
 use function Toarupg0318\TypeAlchemist\alchemy;
 
 it('ToStringTrait performs correctly.', function (mixed $expect, string|null $result) {
-    $intermediateValue = alchemy($expect)->__toSafeString();
+    $intermediateValue = alchemy($expect)->toSafeString();
     if (is_resource($expect)) {
         expect($intermediateValue)->toBeString();   // resource(420) of type (stream)
     } else {
@@ -56,14 +56,14 @@ it(
     ) {
         if ($output instanceof Throwable) {
             expect(
-                fn () => alchemy($input)->__toStrictString())
+                fn () => alchemy($input)->toStrictString())
                 ->toThrow($output);
         } else {
             if (is_resource($input)) {
-                expect(alchemy($input)->__toStrictString())
+                expect(alchemy($input)->toStrictString())
                     ->toBeString($output);
             } else {
-                expect(alchemy($input)->__toStrictString())
+                expect(alchemy($input)->toStrictString())
                     ->toBe($output);
             }
         }

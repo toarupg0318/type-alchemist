@@ -13,7 +13,7 @@ $value = new stdClass();
 $handleSafePositiveInt = function (int|null $value) {
     var_dump($value);
 };
-$handleSafePositiveInt(alchemy($value)->__toSafePositiveInt());
+$handleSafePositiveInt(alchemy($value)->toSafePositiveInt());
 
 /**
  * @param positive-int $value
@@ -22,4 +22,4 @@ $handleSafePositiveInt(alchemy($value)->__toSafePositiveInt());
 $handleStrictPositiveInt = function (int $value) {
     var_dump($value);
 };
-$handleSafePositiveInt(alchemy($value)->__toStrictPositiveInt());
+$handleSafePositiveInt(alchemy($value)->toStrictPositiveInt());

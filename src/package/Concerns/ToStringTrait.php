@@ -12,7 +12,7 @@ use TypeError;
  */
 trait ToStringTrait
 {
-    public function __toSafeString(): string|null
+    public function toSafeString(): string|null
     {
         if (
             is_string($this->value) ||
@@ -35,8 +35,8 @@ trait ToStringTrait
      *
      * @throws TypeError
      */
-    public function __ToStrictString(): string {
-        $scalarStringValue = self::__toSafeString();
+    public function toStrictString(): string {
+        $scalarStringValue = self::toSafeString();
         if (is_null($scalarStringValue)) {
             throw new TypeError();
         } else {
