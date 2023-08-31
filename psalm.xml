@@ -20,5 +20,20 @@
                 <directory name="src" />
             </errorLevel>
         </PossiblyInvalidArgument>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="src" />
+            </errorLevel>
+        </PossiblyUnusedMethod>
+        <LessSpecificReturnStatement>
+            <errorLevel type="suppress">
+                <directory name="src/package/ValueObjects" />
+            </errorLevel>
+        </LessSpecificReturnStatement>
+        <MoreSpecificReturnType>
+            <errorLevel type="suppress">
+                <directory name="src/package/ValueObjects" />
+            </errorLevel>
+        </MoreSpecificReturnType>
     </issueHandlers>
 </psalm>

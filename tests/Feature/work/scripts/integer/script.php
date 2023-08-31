@@ -7,6 +7,15 @@ use function Toarupg0318\TypeAlchemist\alchemy;
 $value = new stdClass();
 
 /**
+ * @param int|null $value
+ * @return void
+ */
+$handleSafeInt = function (int|null $value) {
+    var_dump($value);
+};
+$handleSafeInt(alchemy($value)->toSafeInt());
+
+/**
  * @param positive-int|null $value
  * @return void
  */
