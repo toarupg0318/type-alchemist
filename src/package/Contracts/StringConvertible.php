@@ -21,6 +21,8 @@ interface StringConvertible
     public function toStrictString(): string;
 
     /**
+     * If the class-string value of Passed $targetClass is invalid, returns null safely.
+     *
      * @template T
      * @param class-string<T> $targetClass
      * @return class-string<T>|null
@@ -28,6 +30,8 @@ interface StringConvertible
     public function toSafeClassString(string $targetClass): string|null;
 
     /**
+     * If the class-string value of Passed $targetClass is invalid, throws TypeError.
+     *
      * @template T
      * @param class-string<T> $targetClass
      * @return class-string<T>
