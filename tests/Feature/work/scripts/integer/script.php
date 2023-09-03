@@ -33,4 +33,24 @@ $handleSafePositiveInt(alchemy($value)->toSafePositiveInt());
 $handleStrictPositiveInt = function (int $value) {
     var_dump($value);
 };
-$handleSafePositiveInt(alchemy($value)->toStrictPositiveInt());
+$handleStrictPositiveInt(alchemy($value)->toStrictPositiveInt());
+
+// negative-int
+/**
+ * @param negative-int|null $value
+ * @return void
+ */
+$handleSafeNegativeInt = function (int|null $value) {
+    var_dump($value);
+};
+$handleSafeNegativeInt(alchemy($value)->toSafeNegativeInt());
+
+/**
+ * @param negative-int $value
+ * @return void
+ */
+$handleStrictNegativeInt = function (int $value) {
+    var_dump($value);
+};
+$handleStrictNegativeInt(alchemy($value)->toStrictNegativeInt());
+$handleStrictNegativeInt(alchemy($value)->toStrictNegativeInt(new LogicException()));

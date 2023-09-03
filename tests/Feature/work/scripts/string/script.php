@@ -25,6 +25,7 @@ $handleStrictString = function (string $value) {
     var_dump($value);
 };
 $handleSafeString(alchemy($value)->toStrictString());
+$handleSafeString(alchemy($value)->toStrictString(new LogicException()));
 
 // class-string
 /**
@@ -38,3 +39,4 @@ $handleSafeClassString(
     alchemy(Alchemist::class)
         ->toSafeClassString(Alchemist::class)
 );
+

@@ -46,7 +46,11 @@ final class IntermediateValue implements IntegerConvertible, StringConvertible
         $result = $this->toSafeInt();
 
         if (is_null($result) || $result < 1) {
-            throw new TypeError();
+            if ($exception !== null) {
+                throw $exception;
+            } else {
+                throw new TypeError();
+            }
         }
 
         return $result;
@@ -87,6 +91,41 @@ final class IntermediateValue implements IntegerConvertible, StringConvertible
         $result = $this->toSafeString();
 
         if (is_null($result) || $result !== $targetClass) {
+            if ($exception !== null) {
+                throw $exception;
+            } else {
+                throw new TypeError();
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return negative-int|null
+     */
+    public function toSafeNegativeInt(): int|null
+    {
+        $result = $this->toSafeInt();
+
+        if (is_null($result) || $result > -1) {
+            return null;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param Exception|null $exception
+     * @return negative-int
+     *
+     * @throws Exception|TypeError
+     */
+    public function toStrictNegativeInt(Exception $exception = null): int
+    {
+        $result = $this->toSafeInt();
+
+        if (is_null($result) || $result > -1) {
             if ($exception !== null) {
                 throw $exception;
             } else {
