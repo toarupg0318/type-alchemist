@@ -7,6 +7,26 @@ use function Toarupg0318\TypeAlchemist\alchemy;
 
 $value = new stdClass();
 
+// basic string
+/**
+ * @param string|null $value
+ * @return void
+ */
+$handleSafeString = function (string|null $value) {
+    var_dump($value);
+};
+$handleSafeString(alchemy($value)->toSafeString());
+
+/**
+ * @param string $value
+ * @return void
+ */
+$handleStrictString = function (string $value) {
+    var_dump($value);
+};
+$handleSafeString(alchemy($value)->toStrictString());
+
+// class-string
 /**
  * @param class-string<Alchemist>|null $value
  * @return void

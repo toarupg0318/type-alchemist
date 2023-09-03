@@ -106,3 +106,21 @@ it(
             'hoge'
         ],
     ]);
+
+it(
+    description: 'tests strict mode throws specified Exception correctly.',
+    closure: function (
+        mixed $input,
+        Exception $exception
+    ) {
+        expect(fn () => alchemy($input)->toStrictString($exception))
+            ->toThrow($exception);
+    }
+)
+    ->with([
+        [[], new Exception()],
+        [[1, 2, 3], new LogicException()],
+        [['key' => 'value'], new RuntimeException()],
+        [new stdClass(), new Exception()],
+        [function () {return 'test';}, new LogicException()],
+    ]);

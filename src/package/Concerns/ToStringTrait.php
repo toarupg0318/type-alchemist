@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Toarupg0318\TypeAlchemist\Concerns;
 
+use Exception;
 use Stringable;
 use TypeError;
 
@@ -31,14 +32,19 @@ trait ToStringTrait
     }
 
     /**
+     * @param Exception|null $exception
      * @return string
      *
-     * @throws TypeError
+     * @throws Exception|TypeError
      */
-    public function toStrictString(): string {
+    public function toStrictString(Exception $exception = null): string {
         $scalarStringValue = self::toSafeString();
         if (is_null($scalarStringValue)) {
-            throw new TypeError();
+            if ($exception !== null) {
+                throw $exception;
+            } else {
+                throw new TypeError();
+            }
         } else {
             return $scalarStringValue;
         }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Toarupg0318\TypeAlchemist\Contracts;
 
+use Exception;
 use TypeError;
 
 interface IntegerConvertible
@@ -14,11 +15,12 @@ interface IntegerConvertible
     public function toSafeInt(): int|null;
 
     /**
+     * @param Exception|null $exception
      * @return int
      *
-     * @throws TypeError
+     * @throws Exception|TypeError
      */
-    public function toStrictInt(): int;
+    public function toStrictInt(Exception $exception = null): int;
 
     /**
      * @return positive-int|null
@@ -26,9 +28,22 @@ interface IntegerConvertible
     public function toSafePositiveInt(): int|null;
 
     /**
+     * @param Exception|null $exception
      * @return positive-int
      *
-     * @throws TypeError
+     * @throws Exception|TypeError
      */
-    public function toStrictPositiveInt(): int;
+    public function toStrictPositiveInt(Exception $exception = null): int;
+//
+//    /**
+//     * @return negative-int|null
+//     */
+//    public function toSafeNegativeInt(): int|null;
+//
+//    /**
+//     * @return negative-int
+//     *
+//     * @throws TypeError
+//     */
+//    public function toStrictNegativeInt(): int;
 }

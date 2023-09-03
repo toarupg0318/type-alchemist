@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Toarupg0318\TypeAlchemist\Contracts;
 
+use Exception;
 use TypeError;
 
 interface StringConvertible
@@ -14,11 +15,14 @@ interface StringConvertible
     public function toSafeString(): string|null;
 
     /**
+     * You could customize Exception to throw with second argument whatever you want.
+     *
+     * @param Exception|null $exception
      * @return string
      *
-     * @throws TypeError
+     * @throws Exception|TypeError
      */
-    public function toStrictString(): string;
+    public function toStrictString(Exception $exception = null): string;
 
     /**
      * If the class-string value of Passed $targetClass is invalid, returns null safely.
@@ -30,13 +34,18 @@ interface StringConvertible
     public function toSafeClassString(string $targetClass): string|null;
 
     /**
-     * If the class-string value of Passed $targetClass is invalid, throws TypeError.
+     * If the class-string value of Passed $targetClass is invalid, throws TypeError by default.
+     * You could customize Exception to throw with second argument whatever you want.
      *
      * @template T
      * @param class-string<T> $targetClass
+     * @param Exception|null $exception
      * @return class-string<T>
      *
-     * @throws TypeError
+     * @throws Exception|TypeError
      */
-    public function toStrictClassString(string $targetClass): string;
+    public function toStrictClassString(
+        string $targetClass,
+        Exception $exception = null
+    ): string;
 }

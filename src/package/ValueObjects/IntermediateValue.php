@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Toarupg0318\TypeAlchemist\ValueObjects;
 
+use Exception;
 use Toarupg0318\TypeAlchemist\Concerns\ToIntegerTrait;
 use Toarupg0318\TypeAlchemist\Concerns\ToStringTrait;
 use Toarupg0318\TypeAlchemist\Contracts\IntegerConvertible;
@@ -35,11 +36,12 @@ final class IntermediateValue implements IntegerConvertible, StringConvertible
     }
 
     /**
+     * @param Exception|null $exception
      * @return positive-int
      *
-     * @throws TypeError
+     * @throws Exception|TypeError
      */
-    public function toStrictPositiveInt(): int
+    public function toStrictPositiveInt(Exception $exception = null): int
     {
         $result = $this->toSafeInt();
 
@@ -69,12 +71,15 @@ final class IntermediateValue implements IntegerConvertible, StringConvertible
     /**
      * @template T
      * @param class-string<T> $targetClass
+     * @param Exception|null $exception
      * @return class-string<T>
      *
-     * @throws TypeError
+     * @throws TypeError|Exception
      */
-    public function toStrictClassString(string $targetClass): string
-    {
+    public function toStrictClassString(
+        string $targetClass,
+        Exception|null $exception = null
+    ): string {
         if (! class_exists($targetClass)) {
             throw new TypeError();
         }
@@ -82,7 +87,11 @@ final class IntermediateValue implements IntegerConvertible, StringConvertible
         $result = $this->toSafeString();
 
         if (is_null($result) || $result !== $targetClass) {
-            throw new TypeError();
+            if ($exception !== null) {
+                throw $exception;
+            } else {
+                throw new TypeError();
+            }
         }
 
         return $result;

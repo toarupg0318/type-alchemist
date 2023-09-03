@@ -6,6 +6,7 @@ use function Toarupg0318\TypeAlchemist\alchemy;
 
 $value = new stdClass();
 
+// basic integer
 /**
  * @param int|null $value
  * @return void
@@ -15,6 +16,7 @@ $handleSafeInt = function (int|null $value) {
 };
 $handleSafeInt(alchemy($value)->toSafeInt());
 
+// positive-int
 /**
  * @param positive-int|null $value
  * @return void

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Toarupg0318\TypeAlchemist\Concerns;
 
+use Exception;
 use TypeError;
 
 /**
@@ -32,11 +33,12 @@ trait ToIntegerTrait
     }
 
     /**
+     * @param Exception|null $exception
      * @return int
      *
-     * @throws TypeError
+     * @throws Exception|TypeError
      */
-    public function toStrictInt(): int
+    public function toStrictInt(Exception $exception = null): int
     {
         $return = self::toSafeInt();
 
