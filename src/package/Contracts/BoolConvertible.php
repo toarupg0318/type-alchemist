@@ -21,4 +21,17 @@ interface BoolConvertible
      * @throws Exception|TypeError
      */
     public function toStrictBool(Exception $exception = null): bool;
+
+    /**
+     * @return false|null
+     */
+    public function toSafeFalse(): bool|null;
+
+    /**
+     * @param Exception|null $exception
+     * @return false
+     *
+     * @throws Exception|TypeError
+     */
+    public function toStrictFalse(Exception $exception = null): bool;
 }

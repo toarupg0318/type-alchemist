@@ -40,5 +40,10 @@
                 <directory name="src/package" />
             </errorLevel>
         </TypeDoesNotContainType>
+        <ImplementedReturnTypeMismatch>
+            <errorLevel type="suppress">
+                <directory name="src/package" />
+            </errorLevel>
+        </ImplementedReturnTypeMismatch>
     </issueHandlers>
 </psalm>

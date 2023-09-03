@@ -138,4 +138,39 @@ final class IntermediateValue implements IntegerConvertible, StringConvertible, 
 
         return $result;
     }
+
+    /**
+     * @return false|null
+     */
+    public function toSafeFalse(): bool|null
+    {
+        $return = self::toSafeBool();
+
+        if (is_null($return) || $return !== false) {
+            return null;
+        }
+
+        return $return;
+    }
+
+    /**
+     * @param Exception|null $exception
+     * @return false
+     *
+     * @throws Exception|TypeError
+     */
+    public function toStrictFalse(Exception $exception = null): bool
+    {
+        $return = self::toSafeFalse();
+
+        if (is_null($return)) {
+            if ($exception !== null) {
+                throw $exception;
+            } else {
+                throw new TypeError();
+            }
+        }
+
+        return $return;
+    }
 }
