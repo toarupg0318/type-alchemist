@@ -42,4 +42,23 @@ $handleSafeFalse(alchemy($value)->toSafeFalse());
 $handleStrictFalse = function (bool $value) {
     var_dump($value);
 };
-$handleStrictBool(alchemy($value)->toStrictBool());
+$handleStrictFalse(alchemy($value)->toStrictBool());
+
+// bool true
+/**
+ * @param true|null $value
+ * @return void
+ */
+$handleSafeTrue = function (bool|null $value) {
+    var_dump($value);
+};
+$handleSafeTrue(alchemy($value)->toSafeTrue());
+
+/**
+ * @param true $value
+ * @return void
+ */
+$handleStrictTrue = function (bool $value) {
+    var_dump($value);
+};
+$handleStrictTrue(alchemy($value)->toStrictTrue());
