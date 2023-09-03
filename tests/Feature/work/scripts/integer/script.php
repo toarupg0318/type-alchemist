@@ -54,3 +54,23 @@ $handleStrictNegativeInt = function (int $value) {
 };
 $handleStrictNegativeInt(alchemy($value)->toStrictNegativeInt());
 $handleStrictNegativeInt(alchemy($value)->toStrictNegativeInt(new LogicException()));
+
+// non-positive-int
+/**
+ * @param non-positive-int|null $value
+ * @return void
+ */
+$handleSafeNonPositiveInt = function (int|null $value) {
+    var_dump($value);
+};
+$handleSafeNonPositiveInt(alchemy($value)->toSafeNonPositiveInt());
+
+/**
+ * @param non-positive-int $value
+ * @return void
+ */
+$handleStrictNonPositiveInt = function (int $value) {
+    var_dump($value);
+};
+$handleStrictNonPositiveInt(alchemy($value)->toStrictNonPositiveInt());
+$handleStrictNonPositiveInt(alchemy($value)->toStrictNonPositiveInt(new LogicException()));

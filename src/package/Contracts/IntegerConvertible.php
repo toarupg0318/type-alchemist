@@ -47,4 +47,17 @@ interface IntegerConvertible
      * @throws TypeError
      */
     public function toStrictNegativeInt(Exception $exception = null): int;
+
+    /**
+     * @return non-positive-int|null
+     */
+    public function toSafeNonPositiveInt(): int|null;
+
+    /**
+     * @param Exception|null $exception
+     * @return non-positive-int
+     *
+     * @throws TypeError
+     */
+    public function toStrictNonPositiveInt(Exception $exception = null): int;
 }
