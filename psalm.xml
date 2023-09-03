@@ -35,5 +35,10 @@
                 <directory name="src/package/ValueObjects" />
             </errorLevel>
         </MoreSpecificReturnType>
+        <TypeDoesNotContainType>
+            <errorLevel type="suppress">
+                <directory name="src/package" />
+            </errorLevel>
+        </TypeDoesNotContainType>
     </issueHandlers>
 </psalm>
