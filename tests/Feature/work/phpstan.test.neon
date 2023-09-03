@@ -1,6 +1,6 @@
 parameters:
     level: max
     paths:
-        - script.php
+        - scripts
     excludePaths:
         - tests/Pest.php

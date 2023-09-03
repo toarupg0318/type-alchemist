@@ -32,5 +32,5 @@ jobs:
       - name: Run PHPStan
         run: ./vendor/bin/phpstan analyse
 
-      - name: Tests
+      - name: Tests with Pest
         run: ./vendor/bin/pest --coverage-clover=clover.xml

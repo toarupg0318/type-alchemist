@@ -2,28 +2,27 @@
 
 use function Toarupg0318\TypeAlchemist\alchemy;
 
-it('ToStringTrait performs correctly.', function (mixed $expect, string|null $result) {
-    $intermediateValue = alchemy($expect)->__toSafeString();
+it('ToIntTrait performs correctly.', function (mixed $expect, int|null $result) {
+    $intermediateValue = alchemy($expect)->toSafeInt();
     if (is_resource($expect)) {
-        expect($intermediateValue)->toBeString();   // resource(420) of type (stream)
+        expect($intermediateValue)->toBeInt();   // int(371)
     } else {
         expect($intermediateValue)->toBe($result);
     }
 })->with([
-    [0, '0'],
-    [-1, '-1'],
-    [1.0, '1'],
-    [-3.14, '-3.14'],
-    ['true', 'true'],
-    ['false', 'false'],
-    [true, '1'],
-    //[false, ''],
-    //[false, null],
-    [[], null],
-    [[1, 2, 3], null],
-    [['key' => 'value'], null],
+    [0, 0],
+    [-1, -1],
+    [1.0, 1],
+    [-3.14, -3],
+    ['true', 0],
+    ['false', 0],
+    [true, 1],
+    [false, 0],
+    [[], 0],
+    [[1, 2, 3], 1],
+    [['key' => 'value'], 1],
     [new stdClass(), null],
-    [null, ''],
+    [null, 0],
     [
         (function () {
             $file = 'file.txt';
@@ -34,7 +33,7 @@ it('ToStringTrait performs correctly.', function (mixed $expect, string|null $re
             }
             return $resource;
         })(),
-        ''
+        null
     ],
     [function () {return 'test';}, null],
     [
@@ -44,46 +43,45 @@ it('ToStringTrait performs correctly.', function (mixed $expect, string|null $re
                 return 'hoge';
             }
         },
-        'hoge'
+        null
     ],
 ]);
 
 it(
-    description: 'tests strict mode throws exception correctly if Throwable class-string passed.',
+    description: 'tests strict mode throws TypeError correctly.',
     closure: function (
         mixed $input,
-        string|TypeError $output
+        int|TypeError|null $output
     ) {
         if ($output instanceof Throwable) {
-            expect(
-                fn () => alchemy($input)->__toStrictString())
-                ->toThrow($output);
+            expect(fn () => alchemy($input)
+                ->toStrictInt())->toThrow($output);
         } else {
             if (is_resource($input)) {
-                expect(alchemy($input)->__toStrictString())
-                    ->toBeString($output);
+                expect(alchemy($input)
+                    ->toStrictInt())
+                    ->toBeInt($output);
             } else {
-                expect(alchemy($input)->__toStrictString())
+                expect(alchemy($input)->toStrictInt())
                     ->toBe($output);
             }
         }
     }
 )
     ->with([
-        [0, '0'],
-        [-1, '-1'],
-        [1.0, '1'],
-        [-3.14, '-3.14'],
-        ['true', 'true'],
-        ['false', 'false'],
-        [true, '1'],
-        //[false, ''],
-        //[false, null],
-        [[], new TypeError()],
-        [[1, 2, 3], new TypeError()],
-        [['key' => 'value'], new TypeError()],
+        [0, 0],
+        [-1, -1],
+        [1.0, 1],
+        [-3.14, -3],
+        ['true', 0],
+        ['false', 0],
+        [true, 1],
+        [false, 0],
+        [[], 0],
+        [[1, 2, 3], 1],
+        [['key' => 'value'], 1],
         [new stdClass(), new TypeError()],
-        [null, ''],
+        [null, 0],
         [
             (function () {
                 $file = 'file.txt';
@@ -94,7 +92,7 @@ it(
                 }
                 return $resource;
             })(),
-            ''
+            PHP_INT_MAX
         ],
         [function () {return 'test';}, new TypeError()],
         [
@@ -104,6 +102,6 @@ it(
                     return 'hoge';
                 }
             },
-            'hoge'
+            new TypeError()
         ],
     ]);
