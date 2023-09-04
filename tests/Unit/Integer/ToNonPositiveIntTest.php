@@ -5,7 +5,6 @@ use function Toarupg0318\TypeAlchemist\alchemy;
 it('ToNonPositiveInt performs correctly.', function (mixed $expect, int|null $result) {
     $intermediateValue = alchemy($expect)->toSafeNonPositiveInt();
     expect($intermediateValue)
-        //->dump();
         ->toBe($result);
 })->with([
     [0, 0],
