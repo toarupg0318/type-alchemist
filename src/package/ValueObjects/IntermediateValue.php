@@ -6,18 +6,21 @@ namespace Toarupg0318\TypeAlchemist\ValueObjects;
 
 use Exception;
 use Toarupg0318\TypeAlchemist\Concerns\ToBoolTrait;
+use Toarupg0318\TypeAlchemist\Concerns\ToFloatTrait;
 use Toarupg0318\TypeAlchemist\Concerns\ToIntegerTrait;
 use Toarupg0318\TypeAlchemist\Concerns\ToStringTrait;
 use Toarupg0318\TypeAlchemist\Contracts\BoolConvertible;
+use Toarupg0318\TypeAlchemist\Contracts\FloatConvertible;
 use Toarupg0318\TypeAlchemist\Contracts\IntegerConvertible;
 use Toarupg0318\TypeAlchemist\Contracts\StringConvertible;
 use TypeError;
 
-final class IntermediateValue implements IntegerConvertible, StringConvertible, BoolConvertible
+final class IntermediateValue implements IntegerConvertible, StringConvertible, BoolConvertible, FloatConvertible
 {
     use ToStringTrait;
     use ToIntegerTrait;
     use ToBoolTrait;
+    use ToFloatTrait;
 
     public function __construct(
         public readonly mixed $value

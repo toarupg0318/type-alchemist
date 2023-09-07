@@ -9,6 +9,7 @@ use Stringable;
 use TypeError;
 
 /**
+ * @internal
  * @property mixed $value
  */
 trait ToStringTrait

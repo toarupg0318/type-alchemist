@@ -11,12 +11,12 @@ use TypeError;
  * @internal
  * @property mixed $value
  */
-trait ToIntegerTrait
+trait ToFloatTrait
 {
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function toSafeInt(): int|null
+    public function toSafeFloat(): float|null
     {
         if (
             is_array($this->value) ||
@@ -27,7 +27,7 @@ trait ToIntegerTrait
             is_string($this->value) ||
             is_null($this->value)
         ) {
-            return intval($this->value);
+            return floatval($this->value);
         }
 
         return null;
@@ -35,19 +35,22 @@ trait ToIntegerTrait
 
     /**
      * @param Exception|null $exception
-     * @return int
+     * @return float
      *
      * @throws Exception|TypeError
      */
-    public function toStrictInt(Exception $exception = null): int
+    public function toStrictFloat(Exception $exception = null): float
     {
-        $return = self::toSafeInt();
+        $return = self::toSafeFloat();
 
-        // todo: fix to passed exception
         if (is_null($return)) {
-            throw new TypeError();
-        } else {
-            return $return;
+            if (is_null($exception)) {
+                throw new TypeError();
+            } else {
+                throw $exception;
+            }
         }
+
+        return $return;
     }
 }
