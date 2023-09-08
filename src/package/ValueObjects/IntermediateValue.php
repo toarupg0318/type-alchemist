@@ -281,4 +281,39 @@ final class IntermediateValue implements IntegerConvertible, StringConvertible, 
 
         return $return;
     }
+
+    /**
+     * @return non-zero-int|null
+     */
+    public function toSafeNonZeroInt(): int|null
+    {
+        $return = self::toSafeInt();
+
+        if (is_null($return) || $return === 0) {
+            return null;
+        }
+
+        return $return;
+    }
+
+    /**
+     * @param Exception|null $exception
+     * @return non-zero-int
+     *
+     * @throws TypeError|Exception
+     */
+    public function toStrictNonZeroInt(Exception $exception = null): int
+    {
+        $return = self::toSafeNonZeroInt();
+
+        if (is_null($return)) {
+            if ($exception !== null) {
+                throw $exception;
+            } else {
+                throw new TypeError();
+            }
+        }
+
+        return $return;
+    }
 }

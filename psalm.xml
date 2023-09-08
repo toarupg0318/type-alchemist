@@ -45,5 +45,10 @@
                 <directory name="src/package" />
             </errorLevel>
         </ImplementedReturnTypeMismatch>
+        <InvalidDocblock>
+            <errorLevel type="suppress">
+                <directory name="src/package" />
+            </errorLevel>
+        </InvalidDocblock>
     </issueHandlers>
 </psalm>
